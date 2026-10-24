@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CourseHub | Course Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <div class="logo">
+                <span class="logo-icon">◆</span>
+                CourseHub
+            </div>
+
+            <div class="nav-links">
+                <a href="#dashboard">Dashboard</a>
+                <a href="#courses">Courses</a>
+                <a href="#add-course">Add Course</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Hero -->
+    <header class="hero" id="dashboard">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                PostgreSQL CRUD Manager
+            </span>
+
+            <h1>
+                Manage your
+                <span>learning courses.</span>
+            </h1>
+
+            <p>
+                Add, view, edit, and delete courses using a modern
+                Express and PostgreSQL application.
+            </p>
+
+            <a href="#add-course" class="primary-btn">
+                + Add New Course
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- Dashboard -->
+    <main class="container">
+
+        <!-- Statistics -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+
+                <div>
+                    <p>Total Courses</p>
+                    <h2 id="courseCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+
+                <div>
+                    <p>Database</p>
+                    <h2>PostgreSQL</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔄</div>
+
+                <div>
+                    <p>Operations</p>
+                    <h2>CRUD</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Add Course -->
+        <section class="form-section" id="add-course">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">CREATE</span>
+                    <h2>Add a Course</h2>
+                    <p>
+                        Add a new course to your PostgreSQL database.
+                    </p>
+                </div>
+            </div>
+
+
+            <form id="courseForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="title">
+                            Course Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="e.g. JavaScript Essentials"
+                            required
+                        >
+
+                        <small class="error" id="titleError"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select id="category" name="category" required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Frontend">
+                                Frontend
+                            </option>
+
+                            <option value="Backend">
+                                Backend
+                            </option>
+
+                            <option value="Database">
+                                Database
+                            </option>
+
+                            <option value="Tools">
+                                Tools
+                            </option>
+
+                        </select>
+
+                        <small class="error" id="categoryError"></small>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        placeholder="Describe what learners will learn from this course..."
+                        required
+                    ></textarea>
+
+                    <small class="error" id="descriptionError"></small>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                        id="submitBtn"
+                    >
+                        Add Course
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelEditBtn"
+                        hidden
+                    >
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="formMessage"
+                    class="form-message"
+                    role="alert"
+                ></div>
+
+            </form>
+
+        </section>
+
+
+        <!-- Courses -->
+        <section class="courses-section" id="courses">
+
+            <div class="courses-header">
+
+                <div>
+                    <span class="section-label">READ</span>
+
+                    <h2>Your Courses</h2>
+
+                    <p>
+                        Courses currently stored in PostgreSQL.
+                    </p>
+                </div>
+
+
+                <div class="search-box">
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search courses..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Loading -->
+            <div id="loading" class="status-box">
+                Loading courses...
+            </div>
+
+
+            <!-- Error -->
+            <div
+                id="errorMessage"
+                class="status-box error-box"
+                hidden
+            >
+                Unable to load courses.
+            </div>
+
+
+            <!-- Empty -->
+            <div
+                id="emptyMessage"
+                class="status-box"
+                hidden
+            >
+                No courses found.
+            </div>
+
+
+            <!-- Course Cards -->
+            <div
+                id="courseList"
+                class="course-grid"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <p>
+            © 2026 CourseHub. Built with Express & PostgreSQL.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
